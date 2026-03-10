@@ -1,0 +1,273 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px 0;
+  margin-bottom: 30px;
+}
+header h1 { font-size: 28px; font-weight: 700; }
+header p { opacity: 0.9; margin-top: 6px; font-size: 14px; }
+
+/* Input Section */
+.input-section {
+  background: white;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+}
+
+.input-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e8e8e8;
+}
+.input-tabs button {
+  padding: 10px 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+.input-tabs button.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.url-input-group {
+  display: flex;
+  gap: 12px;
+}
+.url-input-group input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.url-input-group input:focus {
+  border-color: #667eea;
+}
+
+.btn {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-secondary {
+  background: #f0f2f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+.btn-secondary:hover { background: #e8e8e8; }
+
+.file-upload {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.file-upload:hover, .file-upload.dragover {
+  border-color: #667eea;
+  background: #f8f9ff;
+}
+.file-upload input[type="file"] { display: none; }
+.file-upload p { color: #888; margin-top: 8px; font-size: 13px; }
+.file-upload .file-name {
+  margin-top: 12px;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* Progress */
+.progress-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  display: none;
+}
+.progress-bar-container {
+  background: #e8e8e8;
+  border-radius: 20px;
+  height: 24px;
+  overflow: hidden;
+  margin: 12px 0;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 20px;
+  transition: width 0.3s;
+  min-width: 0;
+}
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+}
+
+/* Summary Cards */
+.summary-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  display: none;
+}
+.summary-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+.summary-card .number {
+  font-size: 32px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.summary-card .label {
+  font-size: 13px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Results */
+.results-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: none;
+}
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.results-header h2 { font-size: 18px; }
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.results-table th {
+  background: #f8f9ff;
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 2px solid #e8e8e8;
+  position: sticky;
+  top: 0;
+}
+.results-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: top;
+}
+.results-table tr:hover td { background: #fafbff; }
+
+.tech-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+.cat-cms { background: #e3f2fd; color: #1565c0; }
+.cat-analytics { background: #fce4ec; color: #c62828; }
+.cat-crm { background: #e8f5e9; color: #2e7d32; }
+.cat-advertising { background: #fff3e0; color: #e65100; }
+.cat-framework { background: #f3e5f5; color: #6a1b9a; }
+.cat-server { background: #e0f7fa; color: #00695c; }
+.cat-js { background: #fff9c4; color: #f57f17; }
+.cat-default { background: #f5f5f5; color: #616161; }
+
+.status-success { color: #2e7d32; }
+.status-error { color: #c62828; }
+.status-timeout { color: #e65100; }
+
+.url-cell {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.url-cell a { color: #667eea; text-decoration: none; }
+.url-cell a:hover { text-decoration: underline; }
+
+.table-wrapper {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* Single result */
+.single-result {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-top: 24px;
+  display: none;
+}
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+.tech-item {
+  background: #f8f9ff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+.tech-item .tech-name { font-weight: 600; font-size: 14px; }
+.tech-item .tech-cats { font-size: 11px; color: #888; margin-top: 2px; }
+.tech-item .tech-ver { font-size: 11px; color: #667eea; }

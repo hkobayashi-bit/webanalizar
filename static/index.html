@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAnalizar - Technology Stack Detector</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>WebAnalizar</h1>
+      <p>Webサイトの技術スタックを検出・分析</p>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Input Section -->
+    <div class="input-section">
+      <div class="input-tabs">
+        <button class="active" onclick="switchTab('single')">単一URL</button>
+        <button onclick="switchTab('csv')">CSVアップロード</button>
+      </div>
+
+      <div id="tab-single" class="tab-content active">
+        <div class="url-input-group">
+          <input type="text" id="url-input" placeholder="https://example.com" />
+          <button class="btn btn-primary" id="btn-scan" onclick="scanSingle()">スキャン</button>
+        </div>
+      </div>
+
+      <div id="tab-csv" class="tab-content">
+        <div class="file-upload" id="drop-zone" onclick="document.getElementById('csv-file').click()">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p>CSVファイルをドロップまたはクリックして選択</p>
+          <p>URLカラム（url, website, domain）を含むCSVファイル</p>
+          <div class="file-name" id="file-name"></div>
+          <input type="file" id="csv-file" accept=".csv" onchange="onFileSelect(this)" />
+        </div>
+        <div style="margin-top: 16px; text-align: right;">
+          <button class="btn btn-primary" id="btn-upload" onclick="scanCSV()" disabled>アップロード &amp; スキャン</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Single Result -->
+    <div class="single-result" id="single-result">
+      <h2 id="single-url"></h2>
+      <div class="tech-list" id="single-techs"></div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-section" id="progress-section">
+      <h3>スキャン進捗</h3>
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progress-count">0 / 0</span>
+        <span id="progress-percent">0%</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-section" id="summary-section">
+      <div class="summary-card">
+        <div class="number" id="sum-total">0</div>
+        <div class="label">スキャン済み</div>
+      </div>
+      <div class="summary-card">
+        <div class="number" id="sum-success">0</div>
+        <div class="label">成功</div>
+      </div>
+      <div class="summary-card">
+        <div class="number" id="sum-techs">0</div>
+        <div class="label">検出技術数</div>
+      </div>
+      <div class="summary-card">
+        <div class="number" id="sum-top-tech">-</div>
+        <div class="label">最多技術</div>
+      </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="results-section" id="results-section">
+      <div class="results-header">
+        <h2>検出結果</h2>
+        <button class="btn btn-secondary" id="btn-export" onclick="exportCSV()">CSVエクスポート</button>
+      </div>
+      <div class="table-wrapper">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>URL</th>
+              <th>ステータス</th>
+              <th>検出技術</th>
+            </tr>
+          </thead>
+          <tbody id="results-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

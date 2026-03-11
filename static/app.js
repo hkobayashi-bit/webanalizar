@@ -1,3 +1,6 @@
+// Base path (auto-detect from current URL)
+const BASE = window.location.pathname.replace(/\/$/, '');
+
 // State
 let currentJobId = null;
 let selectedFile = null;
@@ -60,7 +63,7 @@ async function scanSingle() {
   try {
     const form = new FormData();
     form.append('url', url);
-    const resp = await fetch('/api/scan-single', { method: 'POST', body: form });
+    const resp = await fetch(`${BASE}/api/scan-single`, { method: 'POST', body: form });
     const data = await resp.json();
 
     if (!resp.ok) {
@@ -123,7 +126,7 @@ async function scanCSV() {
   try {
     const form = new FormData();
     form.append('file', selectedFile);
-    const resp = await fetch('/api/scan', { method: 'POST', body: form });
+    const resp = await fetch(`${BASE}/api/scan`, { method: 'POST', body: form });
     const data = await resp.json();
 
     if (!resp.ok) {
@@ -145,7 +148,7 @@ async function scanCSV() {
     btn.textContent = 'スキャン中...';
 
     // SSE
-    const source = new EventSource(`/api/jobs/${currentJobId}/stream`);
+    const source = new EventSource(`${BASE}/api/jobs/${currentJobId}/stream`);
     source.onmessage = (event) => {
       const msg = JSON.parse(event.data);
 
@@ -250,7 +253,7 @@ function getCatClass(categories) {
 
 function exportCSV() {
   if (!currentJobId) return;
-  window.location.href = `/api/jobs/${currentJobId}/export`;
+  window.location.href = `${BASE}/api/jobs/${currentJobId}/export`;
 }
 
 function esc(str) {

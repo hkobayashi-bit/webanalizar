@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(pip install:*)",
+      "Bash(python3 -m pip install -r /root/work/webanalizar/requirements.txt)",
+      "Bash(apt-get update:*)",
+      "Bash(apt-get install:*)",
+      "Bash(python3 -m pip install -r requirements.txt --break-system-packages)",
+      "Bash(python3 -m pip install -r requirements.txt --break-system-packages --ignore-installed typing-extensions)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8000/)",
+      "Bash(curl -s -X POST http://localhost:8000/api/scan-single -d \"url=https://wordpress.com\")",
+      "Bash(python3 -m json.tool)",
+      "Bash(curl -sI \"https://raw.githubusercontent.com/AliasIO/wappalyzer/master/src/technologies/w.json\")",
+      "Bash(pkill -f \"uvicorn\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s -X POST http://localhost:8000/api/scan-single -d \"url=https://shopify.com\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(chmod +x /root/work/webanalizar/deploy.sh)",
+      "Bash(ssh ubuntu@54.95.105.90 \"sudo -u deploy mkdir -p /opt/apps/webanalizar && ls -la /opt/apps/webanalizar/\")",
+      "Bash(aws ec2:*)",
+      "Bash(aws ec2-instance-connect:*)",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"echo ''SSH OK'' && python3 --version && ls /opt/apps/ 2>/dev/null\")",
+      "Bash(ssh -o StrictHostKeyChecking=no ubuntu@54.95.105.90 \":*)",
+      "Bash(find /root/work/webanalizar -type d -not -path */.*)",
+      "Bash(ssh ubuntu@54.95.105.90 \"cat /etc/nginx/conf.d/apps/*.conf 2>/dev/null || echo ''not found''; ls /etc/nginx/conf.d/ 2>/dev/null; ls /etc/nginx/sites-enabled/ 2>/dev/null\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"echo connected\")",
+      "Read(//root/.ssh/**)",
+      "Bash(ssh-add -l)",
+      "Bash(ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"echo connected\")",
+      "Bash(ssh -v -i ~/.ssh/id_ed25519 -o ConnectTimeout=10 ubuntu@54.95.105.90 \"echo connected\")",
+      "Bash(aws sts:*)",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"sudo grep -r ''webanalizar'' /etc/nginx/ --include=''*.conf'' -l 2>/dev/null; ls /etc/nginx/conf.d/ /etc/nginx/sites-enabled/ 2>/dev/null\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"sudo grep -r ''webanalizar'' /etc/nginx/ -l 2>/dev/null; cat /etc/nginx/sites-enabled/tools\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"ls -la /opt/apps/webanalizar/static/ && systemctl is-active webanalizar\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"curl -s -o /dev/null -w ''%{http_code}'' http://127.0.0.1:3108/static/style.css\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"sudo systemctl restart webanalizar && sleep 2 && curl -sv http://127.0.0.1:3108/static/style.css 2>&1 | head -20\")",
+      "Bash(ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 ubuntu@54.95.105.90 \"curl -s http://127.0.0.1:3108/webanalizar/static/style.css | head -5; echo ''---''; curl -s -o /dev/null -w ''%{http_code}'' http://127.0.0.1:3108/webanalizar/static/style.css\")"
+    ]
+  }
+}

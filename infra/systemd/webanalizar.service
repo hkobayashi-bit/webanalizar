@@ -1,0 +1,16 @@
+[Unit]
+Description=WebAnalizar - Technology Stack Detector
+After=network.target
+
+[Service]
+Type=simple
+User=deploy
+WorkingDirectory=/opt/apps/webanalizar
+ExecStart=/opt/apps/webanalizar/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 3108
+Restart=always
+RestartSec=5
+Environment=PORT=3108
+Environment=ROOT_PATH=/webanalizar
+
+[Install]
+WantedBy=multi-user.target

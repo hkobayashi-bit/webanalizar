@@ -2,10 +2,11 @@
 
 import asyncio
 import json
+import os
 import uuid
 from datetime import datetime
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Request
 from fastapi.responses import StreamingResponse, HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
 
@@ -16,7 +17,9 @@ from .utils import normalize_url, parse_csv_urls, build_csv_export
 
 import httpx
 
-app = FastAPI(title="WebAnalizar")
+# 本番環境では /webanalizar/ 配下で動作
+ROOT_PATH = os.environ.get("ROOT_PATH", "")
+app = FastAPI(title="WebAnalizar", root_path=ROOT_PATH)
 
 # ジョブストア
 jobs: dict[str, Job] = {}
